@@ -2,20 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-[#FF5A5F];
+  }
+}
+
+html,
+body,
 :root {
+  height: 100%;
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+.leaflet-bottom,
+.leaflet-control,
+.leaflet-pane,
+.leaflet-top {
+    z-index: 0 !important;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.rdrMonth {
+    width: 100% !important;
+}
+
+.rdrCalendarWrapper {
+    font-size: 16px !important;
+    width: 100% !important;
 }
