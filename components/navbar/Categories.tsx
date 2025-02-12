@@ -9,7 +9,6 @@ import { FaSkiing } from "react-icons/fa";
 import { BsSnow } from "react-icons/bs";
 import { IoDiamond } from "react-icons/io5";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 
 export const categories = [
   {
@@ -101,23 +100,6 @@ export const Categories = ({}: Props ) => {
   if (!isMainPage) {
     return null;
   }
-
-  // const [mounted, setMounted] = useState(false);
-  // const [category, setCategory] = useState<string | null>(null);
-
-  // const params = useSearchParams();
-  // const pathname = usePathname();
-
-  // useEffect(() => {
-  //   setMounted(true);
-  //   setCategory(params?.get("category"));
-  // }, [params]);
-
-  // const isMainPage = pathname === '/';
-
-  // if (!mounted || !isMainPage) {
-  //   return null;  // 确保在客户端渲染前不进行渲染
-  // }
 
   return (
     <Container>
