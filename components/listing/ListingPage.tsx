@@ -7,7 +7,7 @@ import { getListings, IListingsParams } from "@/lib/store/modules/listing";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/lib/store";
 import { useEffect, useState } from "react";
-import { EmptyList } from "@/components/EmptyList";
+import { EmptyList } from "@/components/listing/EmptyList";
 
 type Props = {
   searchParams: IListingsParams;
@@ -15,7 +15,7 @@ type Props = {
 
 export const ListingPage = ({searchParams}: Props) => {
   const dispatch = useDispatch<AppDispatch>();
-  const listing = useSelector((state: RootState) => state.listing.safeListings);
+  const listing = useSelector((state: RootState) => state.listing.safeListings) || [];
 
   const [loading, setLoading] = useState(true);
 
@@ -37,7 +37,7 @@ export const ListingPage = ({searchParams}: Props) => {
 
   console.log("Listing page, current listing length:", listing.length);
 
-  if (listing.length === 0) {
+  if (!listing || !Array.isArray(listing) ||listing.length === 0) {
     console.log("No listings, showing EmptyList");
     return (
       <ClientOnly>

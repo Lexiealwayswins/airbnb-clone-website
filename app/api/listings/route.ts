@@ -85,7 +85,7 @@ export const GET = async (req: Request) => {
     }); 
 
   } catch (err: any) {
-    console.error(err);
+    // console.error(err);
     return new Response(JSON.stringify({ err: 'Internal Server Error'}),{
       status: 500,
       headers: {

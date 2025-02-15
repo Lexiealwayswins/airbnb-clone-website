@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heading } from "./Heading";
-import { Button } from "./Button";
-import { useRouter } from "next/router";
+import { Heading } from "../listing/Heading";
+import { Button } from "../Button";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 
@@ -21,7 +21,6 @@ export const EmptyList = ({
   const router = useRouter(); 
   const [hasMounted, setHasMounted] = useState(false);
   
-
   useEffect(() => {
     setHasMounted(true);
     console.log("EmptyList mounted1");

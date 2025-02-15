@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { HeartButton } from "../HeartButton";
+import { HeartButton } from "./HeartButton";
 import { safeListing, safeReservation, safeUser } from "@/types";
 import { useCountries } from "@/hook/useCountries";
 import { useCallback, useMemo } from "react";

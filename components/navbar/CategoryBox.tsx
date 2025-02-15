@@ -4,7 +4,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { IconType } from "react-icons";
 import qs from "query-string";
-import { ClientOnly } from "./ClientOnly";
+import { ClientOnly } from "@/components/ClientOnly";
 
 type Props = {
   icon: IconType;

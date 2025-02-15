@@ -1,0 +1,11 @@
+.custom-date-range .rdrCalendarWrapper {
+  width: 700px !important;
+}
+
+.custom-date-range .rdrMonth {
+  width: 350px !important;
+}
+
+.custom-date-range .rdrMonthName {
+  text-align: center;
+}
