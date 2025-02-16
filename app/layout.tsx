@@ -3,6 +3,8 @@ import { Navbar } from "@/components/navbar/Navbar";
 import { Nunito } from 'next/font/google'
 import { ClientOnly } from "@/components/ClientOnly";
 import { Footer } from "@/components/Footer";
+import { LoginModal } from "@/components/modals/LoginModal";
+import { RegisterModal } from "@/components/modals/RegisterModal";
 // import { Provider } from "react-redux";
 // import store from "@/lib/store";
 
@@ -32,6 +34,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <ClientOnly>
+          <LoginModal />
+          <RegisterModal />
           <Navbar />
           <div className="pb-20 pt-28">{children}</div>
           <Footer />

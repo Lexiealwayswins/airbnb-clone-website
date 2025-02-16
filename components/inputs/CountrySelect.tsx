@@ -59,7 +59,8 @@ export const CountrySelect = ({value, onChange}: Props) => {
             ...provided,
             position: "absolute",
             top: "0px",
-            color: "#9CA3AF"
+            color: "#9CA3AF",
+            overflow: "hidden"
           }),
           indicatorSeparator: () => ({
             display: "none", // 隐藏分隔线

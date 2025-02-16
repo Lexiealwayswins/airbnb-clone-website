@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heading } from "../listing/Heading";
+import { Heading } from "../Heading";
 import { Button } from "../Button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

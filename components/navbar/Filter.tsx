@@ -33,8 +33,6 @@ export const Filter = ({}: Props) => {
     currentQuery = qs.parse(params.toString());
   }
 
-
-
   const [showSelectedDate, setShowSelectedDate] = useState<string>("");
 
   const handleShowSelectedDate = (ranges: RangeKeyDict) => {
