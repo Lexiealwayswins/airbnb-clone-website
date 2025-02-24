@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { safeListing } from '@/types';
-import { Listing } from "@prisma/client";
 
 export interface IListingsParams {
   userId?: string;
@@ -30,6 +29,32 @@ export const getListings = createAsyncThunk(
   }
 );
 
+export const getProperties = createAsyncThunk(
+  "listing/getProperties",
+  async (_, { rejectWithValue}) => {
+    try {
+      const res = await fetch("/api/properties");
+      const data = await res.json();
+      return data;
+    } catch (err: any) {
+      return rejectWithValue(err.message); 
+    } 
+  }
+);
+
+export const getFavorites = createAsyncThunk(
+  "listing/getFavorites",
+  async (_, { rejectWithValue}) => {
+    try {
+      const res = await fetch("/api/favorites");
+      const data = await res.json();
+      return data; 
+    } catch (err: any) {
+      return rejectWithValue(err.message);
+    } 
+  }
+);
+
 const initialState: {
   safeListings: safeListing[],
   loading: boolean,
@@ -55,6 +80,34 @@ const listingStore = createSlice({
         state.loading = false;
       })
       .addCase(getListings.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
+
+    builder
+      .addCase(getProperties.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getProperties.fulfilled, (state, action) => {
+        state.safeListings = action.payload;
+        state.loading = false;
+      })
+      .addCase(getProperties.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
+
+    builder
+      .addCase(getFavorites.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getFavorites.fulfilled, (state, action) => {
+        state.safeListings = action.payload;
+        state.loading = false;
+      })
+      .addCase(getFavorites.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });

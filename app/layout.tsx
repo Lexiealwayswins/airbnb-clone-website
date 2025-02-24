@@ -5,6 +5,8 @@ import { ClientOnly } from "@/components/ClientOnly";
 import { Footer } from "@/components/Footer";
 import { LoginModal } from "@/components/modals/LoginModal";
 import { RegisterModal } from "@/components/modals/RegisterModal";
+import { RentModal } from "@/components/modals/RentModal";
+import getCurrentUser from "@/app/actions/getCurrentUser";
 // import { Provider } from "react-redux";
 // import store from "@/lib/store";
 
@@ -25,18 +27,20 @@ const font = Nunito({
 //   ssr: false 
 // });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body suppressHydrationWarning className={font.className}>
         <ClientOnly>
           <LoginModal />
           <RegisterModal />
-          <Navbar />
+          <RentModal />
+          <Navbar currentUser={currentUser}/>
           <div className="pb-20 pt-28">{children}</div>
           <Footer />
         </ClientOnly>

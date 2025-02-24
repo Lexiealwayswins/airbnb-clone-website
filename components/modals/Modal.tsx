@@ -13,6 +13,8 @@ type Props = {
   footer?: React.ReactElement;
   actionLabel: string;
   disabled: boolean;
+  secondaryAction?: () => void;
+  secondaryActionLabel?: string;
 };
 export const Modal = ({
   isOpen,
@@ -22,7 +24,9 @@ export const Modal = ({
   body,
   footer,
   actionLabel,
-  disabled
+  disabled,
+  secondaryAction,
+  secondaryActionLabel
 }: Props) => {
   if (!isOpen) return;
   const [showModal, setShowModal] = useState<boolean>(isOpen);
@@ -38,6 +42,12 @@ export const Modal = ({
     if (disabled) return;
     onSubmit();
   }, [disabled, onSubmit]);
+
+  const handleSecondaryAction = useCallback(() => {
+    if (disabled || !secondaryAction) return;
+
+    secondaryAction();
+  }, [disabled, secondaryAction])
 
   return (
     <div className="fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70 flex justify-center items-center overflow-x-hidden overflow-y-auto ">
@@ -60,7 +70,15 @@ export const Modal = ({
             <div className="p-6 flex-auto">{body}</div>
             {/* submit and footer */}
             <div className="flex flex-col gap-2 p-6">
-              <div>
+              <div className="flex flex-row items-center gap-4 w-full">
+                {secondaryAction && secondaryActionLabel && (
+                  <Button
+                    outline 
+                    label={secondaryActionLabel}
+                    onClick={handleSecondaryAction}
+                    disabled={disabled}
+                  />
+                )}
                 <Button 
                   label={actionLabel}
                   onClick={handleSubmit}
@@ -72,7 +90,6 @@ export const Modal = ({
           </div>  
         </div>
       </div>
-
     </div>
   )
 }

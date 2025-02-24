@@ -12,7 +12,7 @@ export const ClientOnly = ({ children }: Props) => {
   const [hasMounted, setHasMounted] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("ClientOnly mounted");
+    // console.log("ClientOnly mounted");
     setHasMounted(true);
   }, [])
 

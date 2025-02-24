@@ -164,6 +164,7 @@ export const Filter = ({}: Props) => {
                 style={{               color:"#9CA3AF",
                   fontWeight: "300"
                 }}
+                readOnly
               />
               <div 
                 onMouseLeave={handleHideGuest}

@@ -1,5 +1,7 @@
+import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/lib/prismadb";
 import { Listing } from "@prisma/client";
+import { NextResponse } from "next/server";
 
 export const GET = async (req: Request) => {
   try {
@@ -14,7 +16,7 @@ export const GET = async (req: Request) => {
     const endDate = searchParams.get('endDate');
     const category = searchParams.get('category');
 
-    let query: any = {};
+    const query: any = {};
     if (userId) {
       query.userId = userId;
     }
@@ -77,20 +79,72 @@ export const GET = async (req: Request) => {
       createdAt: list.createdAt.toISOString(),
     }));
 
-    return new Response(JSON.stringify(safeListings), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }); 
+    return NextResponse.json(safeListings);
+
+    // return new Response(JSON.stringify(safeListings), {
+    //   status: 200,
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // }); 
 
   } catch (err: any) {
+    return NextResponse.json(err);
     // console.error(err);
-    return new Response(JSON.stringify({ err: 'Internal Server Error'}),{
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    // return new Response(JSON.stringify({ err: 'Internal Server Error'}),{
+    //   status: 500,
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // });
   } 
+}
+
+export const POST = async (req: Request) => {
+  try {
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const body = await req.json();
+    const {
+      title,
+      description,
+      imageSrc,
+      category,
+      roomCount,
+      bathroomCount,
+      guestCount,
+      location,
+      price,
+    } = body;
+
+    Object.keys(body).forEach((key: any) => {
+      if (!body[key]) {
+        return NextResponse.json({ error: `${key} is required` }, { status: 400 });
+      }
+    });
+
+    const listing = await prisma.listing.create({
+      data: {
+        title,
+        description,
+        imageSrc,
+        category,
+        roomCount,
+        bathroomCount,
+        guestCount,
+        locationValue: location.value,
+        price: parseInt(price, 10),
+        userId: currentUser.id,
+      }
+    })
+
+    return NextResponse.json({ success: true, listing }, { status: 201 });
+  } catch (error) {
+    console.error("Error creating listing:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
 }

@@ -1,15 +1,23 @@
 "use client";
 
+import { useFavorite } from "@/hook/useFavorite";
+import { safeUser } from "@/types";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 type Props = {
-
+  listingId: string;
+  currentUser?: safeUser | null;
 }
 
-export const HeartButton = ({}: Props) => {
+export const HeartButton = ({ listingId, currentUser }: Props) => {
+  const { hasFavorite, toggleFavorite } = useFavorite({
+    listingId,
+    currentUser
+  })
   return (
     <div
-      className="relative cursor-pointer :hover:opacity-80 transition"
+      onClick={toggleFavorite}
+      className="relative cursor-pointer hover:opacity-80 transition"
     >
       <AiOutlineHeart 
         size={28}
@@ -17,7 +25,7 @@ export const HeartButton = ({}: Props) => {
       />
       <AiFillHeart 
         size={24}
-        className="fill-neutral-500/70"
+        className={hasFavorite ? "fill-rose-500" : "fill-neutral-500/70"}
       />
     </div>
   )

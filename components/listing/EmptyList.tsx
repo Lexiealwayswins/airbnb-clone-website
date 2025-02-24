@@ -23,11 +23,6 @@ export const EmptyList = ({
   
   useEffect(() => {
     setHasMounted(true);
-    console.log("EmptyList mounted1");
-    
-    return () => {
-      console.log("EmptyList unmounted2");
-    };
   }, []);
 
   if (!hasMounted) {

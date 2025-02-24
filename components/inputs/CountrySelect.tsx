@@ -77,10 +77,10 @@ export const CountrySelect = ({value, onChange}: Props) => {
           }),
           menu: (provided) => ({
             ...provided,
-            width: "300px", // 设定下拉菜单宽度
+            width: "500px", // 设定下拉菜单宽度
             minWidth: "300px", // 避免被默认样式影响
             marginTop: "20px",
-            marginLeft: "-30px"
+            marginLeft: "-10px"
           }),
           valueContainer: (provided) => ({
             ...provided,
