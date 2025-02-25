@@ -1,9 +1,9 @@
 import prisma from "@/lib/prismadb";
 import getCurrentUser from "@/app/actions/getCurrentUser";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { IParams } from "@/lib/store/modules/listing";
 
-export const POST = async (req: Request, { params}: {params: IParams}) => {
+export async function POST(req: NextRequest, { params }: {params: IParams}) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
@@ -32,7 +32,7 @@ export const POST = async (req: Request, { params}: {params: IParams}) => {
   return NextResponse.json(user);
 };
 
-export const DELETE = async (req: Request, { params}: {params: IParams}) => {
+export async function DELETE (req: NextRequest, { params}: {params: IParams}) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
