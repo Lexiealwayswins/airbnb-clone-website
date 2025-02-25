@@ -32,7 +32,7 @@ export const POST = async (req: Request, { params}: {params: IParams}) => {
   return NextResponse.json(user);
 };
 
-export const DELETE = async (req: Request, { params}: {params: IPrisma}) => {
+export const DELETE = async (req: Request, { params}: {params: IParams}) => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
