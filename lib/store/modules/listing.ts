@@ -13,7 +13,7 @@ export interface IListingsParams {
 }
 
 export interface IParams {
-  listingId: string;
+  listingId?: string;
 }
 
 export const getListings = createAsyncThunk(
