@@ -20,8 +20,6 @@ export const PropertyListing = ({properties, currentUser}: Props) => {
 
   const onDelete = useCallback((id: string) => {
     setDeletingId(id);
-    console.log("看看删除的id:", id);
-    
 
     axios
       .delete(`/api/listings/${id}`)

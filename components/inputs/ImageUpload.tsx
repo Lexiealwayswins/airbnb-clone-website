@@ -36,7 +36,6 @@ export const ImageUpload = ({ onChange, value }: Props) => {
       }}
     >
       {({open}) => {
-        console.log("Cloudinary upload widget ready", open); 
         return (
           <div
             onClick={() => open?.()}

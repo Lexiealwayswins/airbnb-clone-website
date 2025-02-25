@@ -6,6 +6,8 @@ interface IPrisma {
   listingId?: string;
 }
 
+
+
 export const POST = async (req: Request, { params}: {params: IPrisma}) => {
   const currentUser = await getCurrentUser();
 

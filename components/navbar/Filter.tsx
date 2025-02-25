@@ -142,6 +142,7 @@ export const Filter = ({}: Props) => {
               <DateSelect 
                 onChange={handleShowSelectedDate}
                 value={dateRange}
+                months={2}
               />
             </div>
           </div>

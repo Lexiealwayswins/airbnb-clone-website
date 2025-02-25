@@ -11,15 +11,15 @@ type Props = {
 
 export default async function Home({ searchParams }: Props) {
   const currentUser = await getCurrentUser();
+  const parsedSearchParams = searchParams && await searchParams;
   return (
     <ClientOnly>
       <AppProvider>
         <ListingPage 
-          searchParams={searchParams}
+          searchParams={parsedSearchParams}
           currentUser={currentUser}
         />
       </AppProvider>
     </ClientOnly>
-
   );
 }

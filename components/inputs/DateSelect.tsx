@@ -10,8 +10,14 @@ type Props = {
   value: Range;
   onChange: (value: RangeKeyDict) => void;
   disabledDates?: Date[];
+  months: number
 }
-export const DateSelect = ({ value, onChange, disabledDates}: Props) => {
+export const DateSelect = ({ 
+  value, 
+  onChange, 
+  disabledDates, 
+  months
+}: Props) => {
   return(
     <div className="bg-white">
       <DateRange 
@@ -20,10 +26,11 @@ export const DateSelect = ({ value, onChange, disabledDates}: Props) => {
         rangeColors={["#262626"]}
         date={new Date()}
         showDateDisplay={false}
-        months={2}
+        months={months}
         direction="horizontal"
         minDate={new Date()}
-        className="custom-date-range"
+        className="items-center custom-date-range"
+        disabledDates={disabledDates}
       />
     </div>
   )

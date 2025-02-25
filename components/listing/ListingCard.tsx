@@ -8,6 +8,7 @@ import { useCountries } from "@/hook/useCountries";
 import { useCallback, useMemo } from "react";
 import { format } from "date-fns";
 import { Button } from "../Button";
+import { useRouter } from "next/navigation";
 
 type Props = {
   data: safeListing;
@@ -28,6 +29,7 @@ export const ListingCard = ({
   actionId = "",
   currentUser,
 }: Props) => {
+  const router = useRouter();
   const{ getByValue } = useCountries();
   const location = getByValue(data.locationValue);
 
@@ -63,7 +65,8 @@ export const ListingCard = ({
         delay: 0.5,
         ease: [0, 0.71, 0.2, 1.01]
       }}
-      className="col-span-1 cursor-ponter group"
+      className="col-span-1 cursor-ponter group cursor-pointer"
+      onClick={() => router.push(`/listings/${data.id}`)}
     >
       <div className="flex flex-col gap-2 w-full">
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">
