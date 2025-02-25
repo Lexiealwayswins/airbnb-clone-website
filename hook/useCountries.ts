@@ -17,6 +17,6 @@ export const useCountries = () => {
   return {
     getAll,
     getByValue
-  }
+  };
 };
 

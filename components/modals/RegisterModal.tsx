@@ -3,8 +3,8 @@
 import useLoginModal from "@/hook/useLoginModal";
 import { Modal } from "./Modal";
 import { useCallback, useState } from "react";
-import { useForm, FieldValues, SubmitHandler }  from "react-hook-form"
-import { signIn } from "next-auth/react"
+import { useForm, FieldValues, SubmitHandler }  from "react-hook-form";
+import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { Button } from "../Button";
@@ -17,9 +17,8 @@ import axios from "axios";
 
 type Props = {};
 export const RegisterModal = ({}: Props) => {
-  const router = useRouter();
   const loginModal = useLoginModal();
-  const registerModal = useRegisterModal()
+  const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -32,7 +31,7 @@ export const RegisterModal = ({}: Props) => {
       email: "",
       password: "",
     }
-  })
+  });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -48,13 +47,13 @@ export const RegisterModal = ({}: Props) => {
       .finally(() => {
         setIsLoading(false);
         toast.success("Register Successfully");
-      })
+      });
   };
 
   const toggle = useCallback(() => {
     loginModal.onOpen();
     registerModal.onClose();
-  }, [loginModal, registerModal])
+  }, [loginModal, registerModal]);
 
   const body = (
     <div className="flex flex-col gap-4">
@@ -88,7 +87,7 @@ export const RegisterModal = ({}: Props) => {
         required
       />
     </div>
-  )
+  );
   const footer = (
     <div className="flex flex-col gap-4 mt-3">
       <hr />
@@ -118,7 +117,7 @@ export const RegisterModal = ({}: Props) => {
       </div>
     </div>
 
-  )
+  );
   return (
     <Modal 
       isOpen={registerModal.isOpen}
@@ -130,5 +129,5 @@ export const RegisterModal = ({}: Props) => {
       footer={footer}
       actionLabel="Continue"
     />
-  )
-}
+  );
+};

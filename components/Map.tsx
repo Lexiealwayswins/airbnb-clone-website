@@ -66,4 +66,4 @@ export const Map = ({ center, locationValue }: Props) => {
       <MapUpdater center={(center as L.LatLngExpression) || [51, -0.09]} />
     </MapContainer>
   );
-}
+};

@@ -7,10 +7,10 @@ import { Filter } from "./Filter";
 type Props = {}
 export const Search = ({}: Props) => {
 
-  const [showFilter, setShowFilter] = useState(false)
+  const [showFilter, setShowFilter] = useState(false);
   const handleClick = () => {
     setShowFilter(true);
-  }
+  };
 
   return (
     <div>
@@ -38,5 +38,5 @@ export const Search = ({}: Props) => {
       </div>
     </div>
 
-  )
-}
+  );
+};

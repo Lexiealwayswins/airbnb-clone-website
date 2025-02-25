@@ -17,7 +17,7 @@ export const GET = async () => {
     orderBy: {
       createdAt: "desc",
     }
-  })
+  });
 
   const safeProperties = properties.map((properties: Listing) => ({
     ...properties,
@@ -25,4 +25,4 @@ export const GET = async () => {
   }));
 
   return NextResponse.json(safeProperties);
-}
+};

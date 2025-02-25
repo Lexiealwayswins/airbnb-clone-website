@@ -15,14 +15,6 @@ type Props = {
 };
 
 export const PropertyPage = ({ currentUser }: Props) => {
-  if (!currentUser) {
-    return (
-      <ClientOnly>
-        <EmptyList title="Unauthorized" subtitle="Please login"/>
-      </ClientOnly>
-    )
-  }
-  
   const dispatch = useDispatch<AppDispatch>();
   const properties = useSelector((state: RootState) => state.listing.safeListings) || [];
   // const currentUser = await getCurrentUser();
@@ -39,6 +31,14 @@ export const PropertyPage = ({ currentUser }: Props) => {
     
   }, [dispatch, currentUser]);
 
+  if (!currentUser) {
+    return (
+      <ClientOnly>
+        <EmptyList title="Unauthorized" subtitle="Please login"/>
+      </ClientOnly>
+    );
+  }
+
   if (loading) {
     console.log("loading");
     return <div>Loading...</div>; // 或者展示一个loading组件
@@ -49,7 +49,7 @@ export const PropertyPage = ({ currentUser }: Props) => {
       <ClientOnly>
         <EmptyList title="No properties found" subtitle="Looks like you have no properties listings."/>
       </ClientOnly>
-    )
+    );
   }
 
   return (
@@ -59,5 +59,5 @@ export const PropertyPage = ({ currentUser }: Props) => {
         currentUser={currentUser}
       />
     </ClientOnly>
-  )
-}
+  );
+};

@@ -36,5 +36,5 @@ export const Avatar = ({ src, userName }: Props) => {
         />
       )}
     </div>
-  )
-}
+  );
+};

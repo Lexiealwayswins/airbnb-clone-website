@@ -66,7 +66,7 @@ export const GET = async (req: Request) => {
       };
     };
 
-    console.log("API query:"+ query)
+    console.log("API query:"+ query);
     const listing = await prisma.listing.findMany({
       where: query,
       orderBy: {
@@ -98,7 +98,7 @@ export const GET = async (req: Request) => {
     //   },
     // });
   } 
-}
+};
 
 export const POST = async (req: Request) => {
   try {
@@ -140,11 +140,11 @@ export const POST = async (req: Request) => {
         price: parseInt(price, 10),
         userId: currentUser.id,
       }
-    })
+    });
 
     return NextResponse.json({ success: true, listing }, { status: 201 });
   } catch (error) {
     console.error("Error creating listing:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
-}
+};

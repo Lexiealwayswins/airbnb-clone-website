@@ -12,5 +12,5 @@ export const MenuItem = ({onClick, label}: Props) => {
     >
       {label}
     </div>
-  )
-}
+  );
+};

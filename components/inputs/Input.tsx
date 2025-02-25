@@ -55,5 +55,5 @@ export const Input = ({
         {label}
       </label>
     </div>
-  )
-}
+  );
+};

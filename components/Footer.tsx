@@ -25,5 +25,5 @@ export const Footer = ({}: Props) => {
       </div>
     </ClientOnly>
 
-  )
-}
+  );
+};

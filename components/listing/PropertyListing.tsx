@@ -55,5 +55,5 @@ export const PropertyListing = ({properties, currentUser}: Props) => {
         ))}
       </div>
     </Container>
-  )
-}
+  );
+};

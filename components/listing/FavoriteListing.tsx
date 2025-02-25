@@ -27,5 +27,5 @@ export const FavoriteListing = ({favorites, currentUser}: Props) => {
         ))}
       </div>
     </Container>
-  )
-}
+  );
+};

@@ -20,12 +20,12 @@ export const CategoryBox = ({ icon:Icon, label, selected }: Props ) => {
   const handleClick = useCallback(() => {
     let currentQuery = {};
     if (params) {
-      currentQuery = qs.parse(params.toString())
+      currentQuery = qs.parse(params.toString());
     }
     const updatedQuery: any = {
       ...currentQuery,
       category: label,
-    }
+    };
 
     if (params?.get("category") === label) {
       delete updatedQuery.category;
@@ -40,7 +40,7 @@ export const CategoryBox = ({ icon:Icon, label, selected }: Props ) => {
     );
     router.push(url);
 
-  }, [label, params, router])
+  }, [label, params, router]);
 
   return (
     <ClientOnly>

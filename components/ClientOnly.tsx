@@ -14,7 +14,7 @@ export const ClientOnly = ({ children }: Props) => {
   useEffect(() => {
     // console.log("ClientOnly mounted");
     setHasMounted(true);
-  }, [])
+  }, []);
 
   if (!hasMounted) {
     return null;
@@ -30,5 +30,5 @@ export const ClientOnly = ({ children }: Props) => {
       {children}
     </motion.div>
     // <div>{children}</div>
-  )
-}
+  );
+};

@@ -41,7 +41,7 @@ export const GET = async (req: Response, { params }: { params: IGetReservationsP
   } catch (error) {
     return NextResponse.json(error);
   }
-}
+};
 
 export const POST = async (req: Request) => {
   const currentUser = await getCurrentUser();
@@ -71,4 +71,4 @@ export const POST = async (req: Request) => {
     }
   });
   return NextResponse.json(postReservation);
-}
+};

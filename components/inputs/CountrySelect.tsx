@@ -17,7 +17,7 @@ type Props = {
   onChange: (value: CountrySelectValue) => void;
 }
 export const CountrySelect = ({value, onChange}: Props) => {
-  const { getAll } = useCountries()
+  const { getAll } = useCountries();
   return (
     <div className="pb-1">
       <Select
@@ -98,5 +98,5 @@ export const CountrySelect = ({value, onChange}: Props) => {
         })}
       />
     </div>
-  )
-}
+  );
+};

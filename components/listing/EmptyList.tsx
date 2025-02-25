@@ -47,5 +47,5 @@ export const EmptyList = ({
         )}
       </div>
     </motion.div>
-  )
-}
+  );
+};

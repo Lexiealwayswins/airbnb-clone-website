@@ -16,7 +16,7 @@ type Props = {
   currentUser?: safeUser | null;
 };
 export const UserMenu = ({ currentUser }: Props) => {
-  const router = useRouter()
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -32,7 +32,7 @@ export const UserMenu = ({ currentUser }: Props) => {
     };
 
     rentModal.onOpen();
-  }, [currentUser, loginModal, rentModal])
+  }, [currentUser, loginModal, rentModal]);
 
   return (
     <div className="relative">
@@ -49,7 +49,7 @@ export const UserMenu = ({ currentUser }: Props) => {
           <div className="hidden md:block">
             { currentUser? (
               <Avatar
-                src={currentUser?.image!} 
+                src={currentUser?.image} 
                 userName={currentUser?.name}
               />) : (
                 <Image 

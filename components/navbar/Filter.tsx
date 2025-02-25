@@ -38,8 +38,8 @@ export const Filter = ({}: Props) => {
   const handleShowSelectedDate = (ranges: RangeKeyDict) => {
     const selection = ranges.selection;
     setDateRange(selection);
-    setShowSelectedDate(`${dayjs(selection.startDate).format('MMM DD')} - ${dayjs(selection.endDate).format('MMM DD')}`)
-  }
+    setShowSelectedDate(`${dayjs(selection.startDate).format('MMM DD')} - ${dayjs(selection.endDate).format('MMM DD')}`);
+  };
 
   const updatedQuery: any = {
     ...currentQuery,
@@ -50,10 +50,10 @@ export const Filter = ({}: Props) => {
   };
 
   if (dateRange.startDate) {
-    updatedQuery.startDate = formatISO(dateRange.startDate)
+    updatedQuery.startDate = formatISO(dateRange.startDate);
   }
   if (dateRange.endDate) {
-    updatedQuery.endDate = formatISO(dateRange.endDate)
+    updatedQuery.endDate = formatISO(dateRange.endDate);
   }
 
   const url = qs.stringifyUrl(
@@ -62,41 +62,41 @@ export const Filter = ({}: Props) => {
       query: updatedQuery,
     },
     { skipNull: true }
-  )
+  );
 
   const [showSelectedGuest, setShowSelectedGuest] = useState<string>("");
   
   const [showGuest, setShowGuest] = useState(false);
   const handleShowGuest = () => {
     setShowGuest(true);
-  }
+  };
   const handleHideGuest = () => {
     setShowGuest(false);
-    setShowSelectedGuest(`${guestCount} Guests`)
-  }
+    setShowSelectedGuest(`${guestCount} Guests`);
+  };
 
   const [showDateRange, setShowDateRange] = useState(false);
   const handleShowDateRange = () => {
     setShowDateRange(true);
-  }
+  };
   const handleHideDateRange = () => {
     setShowDateRange(false);
-  }
+  };
 
-  const [showLBg, setShowLBg] = useState(false)
+  const [showLBg, setShowLBg] = useState(false);
   const handleLMouseEnter = () => {
     setShowLBg(true);
-  }
+  };
   const handleLMouseLeave = () => {
     setShowLBg(false);
-  }
-  const [showRBg, setShowRBg] = useState(false)
+  };
+  const [showRBg, setShowRBg] = useState(false);
   const handleRMouseEnter = () => {
     setShowRBg(true);
-  }
+  };
   const handleRMouseLeave = () => {
     setShowRBg(false);
-  }
+  };
 
   return (
     <div 
@@ -204,5 +204,5 @@ export const Filter = ({}: Props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -18,10 +18,10 @@ export const POST = async (req: Request, { params}: {params: IPrisma}) => {
   const { listingId } = await params;
 
   if (!listingId || typeof listingId !== "string") {
-    throw new Error("Invalid Id")
+    throw new Error("Invalid Id");
   }
 
-  let favoriteIds = [...(currentUser.favoriteIds || [])];
+  const favoriteIds = [...(currentUser.favoriteIds || [])];
 
   favoriteIds.push(listingId);
 
@@ -47,7 +47,7 @@ export const DELETE = async (req: Request, { params}: {params: IPrisma}) => {
   const { listingId } = await params;
 
   if (!listingId || typeof listingId !== "string") {
-    throw new Error("Invalid Id")
+    throw new Error("Invalid Id");
   }
 
   let favoriteIds = [...(currentUser.favoriteIds || [])];

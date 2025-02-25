@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
 import { Button } from "../Button";
-import { DateSelect } from "../inputs/DateSelect"
+import { DateSelect } from "../inputs/DateSelect";
 import { Range, RangeKeyDict } from "react-date-range";
 
 type Props = {
@@ -49,5 +49,5 @@ export const ListingReservation = ({
         <p>$ {totalPrice}</p>
       </div>
     </div>
-  )
-}
+  );
+};

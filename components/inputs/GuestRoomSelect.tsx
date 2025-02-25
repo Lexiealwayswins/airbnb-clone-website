@@ -12,14 +12,14 @@ type Props = {
 export const GuestRoomSelect = ({ title, subtitle, value, onChange }: Props) => {
   const onAdd = useCallback(() => {
     onChange(value + 1);
-  }, [value, onChange])
+  }, [value, onChange]);
   
   const onReduce = useCallback(() => {
     if (value === 1) {
       return;
     }
     onChange(value - 1);
-  }, [value, onChange])
+  }, [value, onChange]);
 
   return (
     <div className="flex flex-row justify-between p-4">
@@ -44,5 +44,5 @@ export const GuestRoomSelect = ({ title, subtitle, value, onChange }: Props) => 
 
       </div>
     </div>
-  )
-}
+  );
+};

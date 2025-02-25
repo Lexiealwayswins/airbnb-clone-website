@@ -15,14 +15,6 @@ type Props = {
 };
 
 export const TripPage = ({ currentUser }: Props) => {
-  if (!currentUser) {
-    return (
-      <ClientOnly>
-        <EmptyList title="Unauthorized" subtitle="Please login"/>
-      </ClientOnly>
-    )
-  }
-  
   const dispatch = useDispatch<AppDispatch>();
   const trips = useSelector((state: RootState) => state.reservation.safeReservations) || [];
   // const currentUser = await getCurrentUser();
@@ -30,34 +22,43 @@ export const TripPage = ({ currentUser }: Props) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchReservations = async () => {
+    const fetchtrips = async () => {
       const res = await dispatch(getProperties());
-      console.log("Fetched Properties:", res);
+      console.log("Fetched Reservations:", res);
       setLoading(false);
     };
-    fetchProperties();
+    fetchtrips();
     
   }, [dispatch, currentUser]);
+
+  if (!currentUser) {
+    return (
+      <ClientOnly>
+        <EmptyList title="Unauthorized" subtitle="Please login"/>
+      </ClientOnly>
+    );
+  }
 
   if (loading) {
     console.log("loading");
     return <div>Loading...</div>; // 或者展示一个loading组件
   }
 
-  if (!properties || !Array.isArray(properties) ||properties.length === 0) {
+  if (!trips || !Array.isArray(trips) ||trips.length === 0) {
     return (
       <ClientOnly>
         <EmptyList title="No properties found" subtitle="Looks like you have no properties listings."/>
       </ClientOnly>
-    )
+    );
   }
 
   return (
-    <ClientOnly>
-      <PropertyListing 
-        properties={properties}
-        currentUser={currentUser}
-      />
-    </ClientOnly>
-  )
-}
+    // <ClientOnly>
+    //   <PropertyListing 
+    //     trips={trips}
+    //     currentUser={currentUser}
+    //   />
+    // </ClientOnly>
+    <div></div>
+  );
+};

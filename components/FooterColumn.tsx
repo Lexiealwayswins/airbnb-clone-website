@@ -23,5 +23,5 @@ export const FooterColumn = ({index, data}: Props) => {
         ))
       }
     </motion.div>
-  )
-}
+  );
+};

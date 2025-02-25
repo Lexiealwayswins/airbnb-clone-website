@@ -1,7 +1,7 @@
 "use client";
 
-import { safeUser } from "@/types"
-import { Avatar } from "../Avatar"
+import { safeUser } from "@/types";
+import { Avatar } from "../Avatar";
 import { IconType } from "react-icons";
 import { ListingCategory } from "./ListingCategory";
 import { Map } from "../Map";
@@ -74,5 +74,5 @@ export const ListingInfo = ({
         </p>
       </div>
     </div>
-  )
-}
+  );
+};

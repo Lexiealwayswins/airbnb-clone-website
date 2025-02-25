@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { AppDispatch, RootState } from "@/lib/store";
 import { getListingsById, IParams } from "@/lib/store/modules/listing";
@@ -37,9 +37,9 @@ export const ListingDetail = ({currentUser, params}: Props) => {
         setLoading(false);
         console.log("Fetched listings:",res);
       }
-    }
+    };
     fetchListingDetail();
-  }, [dispatch, params.listingId])
+  }, [dispatch, params.listingId]);
 
   useEffect(() => {
     const fetchReservation = async () => {
@@ -51,9 +51,9 @@ export const ListingDetail = ({currentUser, params}: Props) => {
       })).unwrap();
       console.log("Fetched reservations:", res);
       setLoading(false);
-    }
+    };
     fetchReservation();
-  }, [dispatch, params.listingId, listing?.userId, listing?.user?.id])
+  }, [dispatch, params.listingId, listing?.userId, listing?.user?.id]);
 
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
@@ -68,7 +68,7 @@ export const ListingDetail = ({currentUser, params}: Props) => {
     });
 
     return dates;
-  }, [reservations])
+  }, [reservations]);
 
   const [dateRange, setDateRange] = useState<Range>({
     startDate: new Date(),
@@ -79,7 +79,7 @@ export const ListingDetail = ({currentUser, params}: Props) => {
   const onChangeDate = (ranges: RangeKeyDict) => {
     const selection = ranges.selection;
     setDateRange(selection);
-  }
+  };
 
   const [totalPrice, setTotalPrice] = useState(listing.price);
 
@@ -88,14 +88,14 @@ export const ListingDetail = ({currentUser, params}: Props) => {
       const dayCount = differenceInCalendarDays(
         dateRange.endDate,
         dateRange.startDate
-      )
+      );
       if (dayCount && listing.price) {
         setTotalPrice(dayCount * listing.price);
       } else {
         setTotalPrice(listing.price);
       }
     };
-  }, [dateRange, listing?.price])
+  }, [dateRange, listing?.price]);
 
   const onCreateReservation = useCallback(async (data: IPostReservationsParams) => {
     if (!currentUser) {
@@ -103,7 +103,7 @@ export const ListingDetail = ({currentUser, params}: Props) => {
     }
     setLoading(true);
     dispatch(postReservations(data));
-  }, [dispatch, totalPrice, dateRange, params.listingId, router, currentUser, loginModal])
+  }, [dispatch, totalPrice, dateRange, params.listingId, router, currentUser, loginModal]);
 
   const category = useMemo(() => {
     return categories.find((item) => item.label === listing.category);
@@ -155,5 +155,5 @@ export const ListingDetail = ({currentUser, params}: Props) => {
         </div>
       </div>
     </Container>
-  )
-}
+  );
+};

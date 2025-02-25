@@ -112,7 +112,7 @@ const initialState: {
   },
   loading: false,
   error: null as string | null,
-}
+};
 
 const listingStore = createSlice({
   name: 'listing',
@@ -175,7 +175,7 @@ const listingStore = createSlice({
         state.error = action.payload as string;
       });
   }
-})
+});
 
 export default listingStore.reducer;
 

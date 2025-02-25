@@ -2,14 +2,14 @@ import prisma from "@/lib/prismadb";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
 
-export const GET = async (req: Request) => {
+export const GET = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
     return NextResponse.error();
   }
 
-  console.log("currentUser: ", currentUser)
+  console.log("currentUser: ", currentUser);
 
   const favorites = await prisma.listing.findMany({
     where: {
@@ -19,7 +19,7 @@ export const GET = async (req: Request) => {
     },
   });
 
-  console.log("favorites: ", favorites)
+  console.log("favorites: ", favorites);
 
   const safeFavorite = (favorites).map((favorite) => ({
     ...favorite,
@@ -27,4 +27,4 @@ export const GET = async (req: Request) => {
   }));
 
   return  NextResponse.json(safeFavorite);
-}
+};

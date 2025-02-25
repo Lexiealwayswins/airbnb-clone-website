@@ -17,7 +17,7 @@ export const useFavorite = ({ listingId, currentUser }: Props) => {
   const hasFavorite = useMemo(() => {
     const list = currentUser?.favoriteIds || [];
     return list.includes(listingId);
-  }, [currentUser, listingId])
+  }, [currentUser, listingId]);
 
   const toggleFavorite = useCallback(async (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -43,10 +43,10 @@ export const useFavorite = ({ listingId, currentUser }: Props) => {
       toast.error("Something Went Wrong");
     }
 
-  }, [currentUser, hasFavorite, listingId, loginModal])
+  }, [currentUser, hasFavorite, listingId, loginModal]);
 
   return {
     hasFavorite,
     toggleFavorite
-  }
-}
+  };
+};

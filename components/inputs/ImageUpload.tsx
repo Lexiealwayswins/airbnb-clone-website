@@ -6,7 +6,7 @@ import { useCallback } from "react";
 import { TbPhotoPlus } from "react-icons/tb";
 
 declare global {
-  var cloudinary: any;
+  let cloudinary: any;
 }
 
 type Props = {
@@ -25,7 +25,7 @@ export const ImageUpload = ({ onChange, value }: Props) => {
     } else {
       console.error("Cloudinary 上传失败:", result);
     }
-  }, [onChange])
+  }, [onChange]);
   return (
     <CldUploadWidget
       onSuccess={handleCallback}
@@ -54,8 +54,8 @@ export const ImageUpload = ({ onChange, value }: Props) => {
               </div>
             )}
           </div>
-        )
+        );
       }}
     </CldUploadWidget>
-  )
-}
+  );
+};

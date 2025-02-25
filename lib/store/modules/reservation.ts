@@ -35,7 +35,7 @@ export const getReservations = createAsyncThunk(
       return rejectWithValue(err.message); // Redux will dispatch rejected automatically
     } 
   }
-)
+);
 
 export const postReservations = createAsyncThunk(
   "reservation/postReservations", 
@@ -47,7 +47,7 @@ export const postReservations = createAsyncThunk(
       return rejectWithValue(err.message); // Redux will dispatch rejected automatically
     } 
   }
-)
+);
 
 export const delReservations = createAsyncThunk(
   "reservation/delReservations", 
@@ -60,7 +60,7 @@ export const delReservations = createAsyncThunk(
       return rejectWithValue(err.message); // Redux will dispatch rejected automatically
     } 
   }
-)
+);
 
 const initialState : {
   safeReservations: safeReservation[],
@@ -94,7 +94,7 @@ const initialState : {
   },
   loading: false,
   error: null as string | null,
-}
+};
 
 const reservationStore = createSlice({
   name: 'reservation',
@@ -148,6 +148,6 @@ const reservationStore = createSlice({
         state.error = action.payload as string;
       });
   }
-})
+});
 
 export default reservationStore.reducer;

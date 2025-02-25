@@ -1,8 +1,8 @@
 "use client";
 
-import { safeUser } from "@/types"
-import { Heading } from "../Heading"
-import { useCountries } from "@/hook/useCountries"
+import { safeUser } from "@/types";
+import { Heading } from "../Heading";
+import { useCountries } from "@/hook/useCountries";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { HeartButton } from "./HeartButton";
@@ -24,7 +24,7 @@ export const ListingHead = ({
 }: Props) => {
   const { getByValue } = useCountries();
   const location = getByValue(locationValue);
-  console.log("看看image",imageSrc)
+  console.log("看看image",imageSrc);
   return (
     <div className="flex flex-col gap-5">
       <Heading
@@ -52,5 +52,5 @@ export const ListingHead = ({
         </div>
       </motion.div>
     </div>
-  )
-}
+  );
+};

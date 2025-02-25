@@ -28,7 +28,6 @@ export const Modal = ({
   secondaryAction,
   secondaryActionLabel
 }: Props) => {
-  if (!isOpen) return;
   const [showModal, setShowModal] = useState<boolean>(isOpen);
   const handleClose = useCallback(() => {
     if (disabled) return;
@@ -47,8 +46,9 @@ export const Modal = ({
     if (disabled || !secondaryAction) return;
 
     secondaryAction();
-  }, [disabled, secondaryAction])
+  }, [disabled, secondaryAction]);
 
+  if (!isOpen) return;
   return (
     <div className="fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70 flex justify-center items-center overflow-x-hidden overflow-y-auto ">
       <div className="w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto">
@@ -91,5 +91,5 @@ export const Modal = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

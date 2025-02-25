@@ -15,5 +15,5 @@ export default async function FavoritiesPage ({}: Props) {
         />
       </AppProvider>
     </ClientOnly>
-  )
+  );
 }

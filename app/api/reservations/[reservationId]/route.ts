@@ -22,9 +22,9 @@ export const DELETE = async (req: Request, { params }: { params: IDelReservation
         id: reservationId,
         OR: [{userId: currentUser.id}, { listing: {userId: currentUser.id}}]
       }
-    })
+    });
     return NextResponse.json(delReservation);
   } catch (error) {
     return NextResponse.json(error);
   }
-}
+};

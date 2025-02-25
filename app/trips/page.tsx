@@ -16,5 +16,5 @@ export default async function TripsPage ({}: Props) {
         />
       </AppProvider>
     </ClientOnly>
-  )
+  );
 }

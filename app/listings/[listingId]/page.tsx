@@ -16,5 +16,5 @@ export default async function ListingDetailPage ({ params }: { params: IParams }
         />
       </AppProvider>
     </ClientOnly>
-  )
+  );
 }

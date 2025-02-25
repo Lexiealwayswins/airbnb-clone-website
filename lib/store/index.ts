@@ -1,13 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit'
-import listingReducer from './modules/listing'
-import reservationReducer from './modules/reservation'
+import { configureStore } from '@reduxjs/toolkit';
+import listingReducer from './modules/listing';
+import reservationReducer from './modules/reservation';
 
 const store = configureStore({
   reducer: {
     listing: listingReducer,
     reservation: reservationReducer,
   }
-})
+});
 
 // Typescript Type Support
 export type RootState = ReturnType<typeof store.getState>;

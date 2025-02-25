@@ -21,4 +21,4 @@ export const CategoryInput = ({ icon: Icon, label, selected, onClick }: Props) =
       <div className="font-semibold">{label}</div>
     </div>
   );
-}
+};

@@ -13,7 +13,7 @@ export const HeartButton = ({ listingId, currentUser }: Props) => {
   const { hasFavorite, toggleFavorite } = useFavorite({
     listingId,
     currentUser
-  })
+  });
   return (
     <div
       onClick={toggleFavorite}
@@ -28,5 +28,5 @@ export const HeartButton = ({ listingId, currentUser }: Props) => {
         className={hasFavorite ? "fill-rose-500" : "fill-neutral-500/70"}
       />
     </div>
-  )
-}
+  );
+};

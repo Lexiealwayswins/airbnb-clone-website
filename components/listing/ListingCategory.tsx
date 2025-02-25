@@ -18,4 +18,4 @@ export const ListingCategory = ({ icon: Icon, label, description }: Props) => {
       </div>
     </div>
   );
-}
+};

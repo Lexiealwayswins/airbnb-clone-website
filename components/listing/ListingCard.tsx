@@ -39,21 +39,21 @@ export const ListingCard = ({
     }
     const start = new Date(reservation.startDate);
     const end = new Date(reservation.endDate);
-    return `${format(start, "PP")} - ${format(end, "PP")}`
-  }, [reservation])
+    return `${format(start, "PP")} - ${format(end, "PP")}`;
+  }, [reservation]);
 
   const price = useMemo(() => {
     if (reservation) {
       return reservation.totalPrice;
     };
     return data.price;
-  }, [reservation, data.price])
+  }, [reservation, data.price]);
 
   const handleCancel = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
       if(disabled) return;
-      onAction?.(actionId)
+      onAction?.(actionId);
     }, [onAction, actionId, disabled]);
 
   return (
@@ -105,5 +105,5 @@ export const ListingCard = ({
         )}
       </div>
     </motion.div>
-  )
-}
+  );
+};

@@ -13,4 +13,4 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       {children}
     </Provider>
   );
-}
+};

@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Navbar } from "@/components/navbar/Navbar";
-import { Nunito } from 'next/font/google'
+import { Nunito } from 'next/font/google';
 import { ClientOnly } from "@/components/ClientOnly";
 import { Footer } from "@/components/Footer";
 import { LoginModal } from "@/components/modals/LoginModal";
@@ -18,7 +18,7 @@ export const metadata = {
 
 const font = Nunito({
   subsets: ["latin"],
-})
+});
 
 // import dynamic from 'next/dynamic';
 

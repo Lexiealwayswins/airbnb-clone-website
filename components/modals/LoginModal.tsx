@@ -3,8 +3,8 @@
 import useLoginModal from "@/hook/useLoginModal";
 import { Modal } from "./Modal";
 import { useCallback, useState } from "react";
-import { useForm, FieldValues, SubmitHandler }  from "react-hook-form"
-import { signIn } from "next-auth/react"
+import { useForm, FieldValues, SubmitHandler }  from "react-hook-form";
+import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { Button } from "../Button";
@@ -18,7 +18,7 @@ type Props = {};
 export const LoginModal = ({}: Props) => {
   const router = useRouter();
   const loginModal = useLoginModal();
-  const registerModal = useRegisterModal()
+  const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -30,7 +30,7 @@ export const LoginModal = ({}: Props) => {
       email: "",
       password: "",
     }
-  })
+  });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -53,7 +53,7 @@ export const LoginModal = ({}: Props) => {
   const toggle = useCallback(() => {
     loginModal.onClose();
     registerModal.onOpen();
-  }, [loginModal, registerModal])
+  }, [loginModal, registerModal]);
 
   const body = (
     <div className="flex flex-col gap-4">
@@ -79,7 +79,7 @@ export const LoginModal = ({}: Props) => {
         required
       />
     </div>
-  )
+  );
   const footer = (
     <div className="flex flex-col gap-4 mt-3">
       <hr />
@@ -109,7 +109,7 @@ export const LoginModal = ({}: Props) => {
       </div>
     </div>
 
-  )
+  );
   return (
     <Modal 
       isOpen={loginModal.isOpen}
@@ -121,5 +121,5 @@ export const LoginModal = ({}: Props) => {
       footer={footer}
       actionLabel="Continue"
     />
-  )
-}
+  );
+};

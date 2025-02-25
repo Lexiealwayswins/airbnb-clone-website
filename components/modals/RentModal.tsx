@@ -35,11 +35,11 @@ export const RentModal = ({}: Props) => {
 
   const onBack = () => {
     setStep((value) => value - 1);
-  }
+  };
 
   const onNext = () => {
     setStep((value) => value + 1);
-  }
+  };
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.PRICE) {
@@ -74,7 +74,7 @@ export const RentModal = ({}: Props) => {
       location: null,
       price: 1,
     }
-  })
+  });
 
   const imageSrc = watch("imageSrc");
   const category = watch("category");
@@ -88,13 +88,13 @@ export const RentModal = ({}: Props) => {
       shouldValidate: true,
       shouldDirty: true,
       shouldTouch: true,
-    })
-  }
+    });
+  };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (step !== STEPS.PRICE) return onNext();
     console.log("提交的数据:", data); 
-    setIsLoading(true)
+    setIsLoading(true);
 
     axios
       .post("/api/listings", data)
@@ -107,12 +107,12 @@ export const RentModal = ({}: Props) => {
       })
       .catch((error) => {
         console.error("提交失败:", error.response?.data || error.message);
-        toast.error("Something Went Wrong")
+        toast.error("Something Went Wrong");
       })
       .finally(() => {
         setIsLoading(false);
-      })
-  }
+      });
+  };
 
   let body = (
     <div className="flex flex-col gap-8">
@@ -136,7 +136,7 @@ export const RentModal = ({}: Props) => {
         ))}
       </div>
     </div>
-  )
+  );
 
   if (step === STEPS.LOCATION) {
     body = (
@@ -156,7 +156,7 @@ export const RentModal = ({}: Props) => {
           locationValue={location?.value}
         />
       </div>
-    )
+    );
   }
 
   if (step === STEPS.GUEST) {
@@ -187,7 +187,7 @@ export const RentModal = ({}: Props) => {
           onChange={(value) => setCustomValue("bathroomCount", value)}
         />
       </div>
-    )
+    );
   }
 
   if (step === STEPS.PHOTO) {
@@ -202,7 +202,7 @@ export const RentModal = ({}: Props) => {
           onChange={(value) => setCustomValue("imageSrc", value)}
         />
       </div>
-    )
+    );
   }
 
   if (step === STEPS.DESCRIPTION) {
@@ -230,7 +230,7 @@ export const RentModal = ({}: Props) => {
           required
         />
       </div>
-    )
+    );
   }
 
   if (step === STEPS.PRICE) {
@@ -251,7 +251,7 @@ export const RentModal = ({}: Props) => {
           required
         />
       </div>
-    )
+    );
   }
 
   return (
@@ -266,5 +266,5 @@ export const RentModal = ({}: Props) => {
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       disabled={isLoading}
     />
-  )
-}
+  );
+};

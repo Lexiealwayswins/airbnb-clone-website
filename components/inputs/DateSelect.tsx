@@ -33,5 +33,5 @@ export const DateSelect = ({
         disabledDates={disabledDates}
       />
     </div>
-  )
-}
+  );
+};
