@@ -1,7 +1,8 @@
 [build]
   command = "npm run build"  # 构建命令，根据你的 package.json 调整
-  publish = "out"            # 发布目录，Next.js 通常是 "out" 或 ".next"
+  publish = ".next"
+  environment = { NODE_VERSION = "20" }
   functions = "api"
 
 [functions]
-  directory = "api" # 如果你的项目依赖服务器功能（例如 API 路由），需要启用 Netlify 的服务器端函数支持，而不是静态导出
+  directory = "/opt/build/repo/api" # 如果你的项目依赖服务器功能（例如 API 路由），需要启用 Netlify 的服务器端函数支持，而不是静态导出
