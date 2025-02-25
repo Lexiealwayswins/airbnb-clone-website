@@ -1,14 +1,9 @@
 import prisma from "@/lib/prismadb";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
+import { IParams } from "@/lib/store/modules/listing";
 
-interface IPrisma {
-  listingId?: string;
-}
-
-
-
-export const POST = async (req: Request, { params}: {params: IPrisma}) => {
+export const POST = async (req: Request, { params}: {params: IParams}) => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
