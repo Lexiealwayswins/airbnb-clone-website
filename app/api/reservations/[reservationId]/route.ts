@@ -3,14 +3,14 @@ import prisma from "@/lib/prismadb";
 import { IDelReservationsParams } from "@/lib/store/modules/reservation";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE (req: NextRequest, { params }: { params: IDelReservationsParams}) {
+export async function DELETE (req: NextRequest, context: any) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
     return NextResponse.error();
   }
 
-  const { reservationId } = params;
+  const { reservationId } = context.params as { reservationId: string };
 
   if (!reservationId || typeof reservationId !== "string") {
     return NextResponse.error();

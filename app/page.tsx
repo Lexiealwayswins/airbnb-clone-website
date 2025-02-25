@@ -9,7 +9,7 @@ type Props = {
   searchParams: IListingsParams;
 }
 
-export default async function Home({ searchParams }: Props) {
+export default async function Home({ searchParams }: any ) {
   const currentUser = await getCurrentUser();
   const parsedSearchParams = searchParams && await searchParams;
   return (

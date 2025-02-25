@@ -1,11 +1,14 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/lib/prismadb";
-import { IGetReservationsParams } from "@/lib/store/modules/reservation";
 import { NextResponse } from "next/server";
 
-export const GET = async (req: Response, { params }: { params: IGetReservationsParams }) => {
+export const GET = async (req: Request, context: any) => {
   try {
-    const { listingId, userId, authorId } = params;
+    const { listingId, userId, authorId } = context.params as {
+      authorId?: string,  
+      userId?: string  
+      listingId?: string
+    };
     const query: any = {};
 
     if (listingId) {
@@ -37,7 +40,7 @@ export const GET = async (req: Response, { params }: { params: IGetReservationsP
         createdAt: reservation.listing.createdAt.toISOString(),
       },
     }));
-    return safeReservations;
+    return NextResponse.json(safeReservations);
   } catch (error) {
     return NextResponse.json(error);
   }

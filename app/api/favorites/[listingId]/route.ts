@@ -3,14 +3,14 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import { NextRequest, NextResponse } from "next/server";
 import { IParams } from "@/lib/store/modules/listing";
 
-export async function POST(req: NextRequest, { params }: {params: IParams}) {
+export async function POST(req: NextRequest, context: any) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
     return NextResponse.error();
   }
 
-  const { listingId } = await params;
+  const { listingId } = context.params as { listingId: string };
 
   if (!listingId || typeof listingId !== "string") {
     throw new Error("Invalid Id");
@@ -32,14 +32,14 @@ export async function POST(req: NextRequest, { params }: {params: IParams}) {
   return NextResponse.json(user);
 };
 
-export async function DELETE (req: NextRequest, { params}: {params: IParams}) {
+export async function DELETE (req: NextRequest, context: any) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
     return NextResponse.error();
   }
 
-  const { listingId } = await params;
+  const { listingId } = context.params as { listingId: string };
 
   if (!listingId || typeof listingId !== "string") {
     throw new Error("Invalid Id");

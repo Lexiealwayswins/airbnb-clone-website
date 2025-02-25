@@ -4,8 +4,8 @@ import prisma from "@/lib/prismadb";
 import { IParams } from "@/lib/store/modules/listing";
 
 
-export async function GET(req: Request, { params }: { params: IParams }) {
-  const { listingId } = await params;
+export async function GET(req: Request, context: any) {
+  const { listingId } = context.params as { listingId: string };
   // console.log("API listingId:", listingId);
 
   if (!listingId) {
@@ -40,13 +40,13 @@ export async function GET(req: Request, { params }: { params: IParams }) {
   }
 }
 
-export async function DELETE (req: Request, { params }: { params: IParams}){
+export async function DELETE (req: Request, context: any){
   const currentUser = await getCurrentUser();
   if (!currentUser) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { listingId } = await params;
+  const { listingId } = context.params as { listingId: string };
 
   if (!listingId || typeof listingId !== "string") {
     return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
