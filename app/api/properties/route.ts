@@ -1,9 +1,9 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/lib/prismadb";
 import { Listing } from "@prisma/client";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async () => {
+export async function GET (req: NextRequest) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
