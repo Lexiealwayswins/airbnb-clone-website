@@ -6,7 +6,8 @@ import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 
-console.log("NEXT_AUTH_SECRET:", process.env.NEXT_AUTH_SECRET);
+console.log("Starting /api/auth/[...nextauth]");
+console.time("auth");
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -59,5 +60,6 @@ export const authOptions: AuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
-
+console.log("Starting /api/auth/[...nextauth]");
+console.time("auth");
 export default NextAuth(authOptions);

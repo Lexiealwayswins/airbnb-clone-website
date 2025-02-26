@@ -68,6 +68,7 @@ export async function GET (req: NextRequest) {
 
     console.log("API query:"+ query);
     const listing = await prisma.listing.findMany({
+      // take: 10,  // 限制返回数量
       where: query,
       orderBy: {
         createdAt: "desc",
