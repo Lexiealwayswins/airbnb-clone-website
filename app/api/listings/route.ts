@@ -66,9 +66,11 @@ export async function GET (req: NextRequest) {
       };
     };
 
-    console.log("API query:"+ query);
+    console.log("DATABASE_URL:", process.env.DATABASE_URL);
+    await prisma.$connect();
+    console.log("Prisma connected");
     const listing = await prisma.listing.findMany({
-      // take: 10,  // 限制返回数量
+      take: 10,  // 限制返回数量
       where: query,
       orderBy: {
         createdAt: "desc",
