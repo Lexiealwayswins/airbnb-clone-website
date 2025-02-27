@@ -66,16 +66,15 @@ export async function GET (req: NextRequest) {
       };
     };
 
-    console.log("DATABASE_URL:", process.env.DATABASE_URL);
-    await prisma.$connect();
-    console.log("Prisma connected");
+    console.time("Fetching listings");
     const listing = await prisma.listing.findMany({
-      take: 10,  // 限制返回数量
+      take: 4,  // 限制返回数量
       where: query,
       orderBy: {
         createdAt: "desc",
       }
     });
+    console.timeEnd("Fetching listings");
 
     const safeListings = listing.map((list: Listing) => ({
       ...list,
