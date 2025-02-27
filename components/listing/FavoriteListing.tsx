@@ -5,6 +5,8 @@ import { Container } from "@/components/Container";
 import { safeListing, safeUser } from "@/types";
 import { ListingCard } from "@/components/listing/ListingCard";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   favorites: safeListing[];
   currentUser?: safeUser | null;

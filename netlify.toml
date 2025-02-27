@@ -3,4 +3,4 @@
   publish = ".next"
 
 [functions]
-  directory = ".next/server/app/api"
+  directory = ".next/server/app"

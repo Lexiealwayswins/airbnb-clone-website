@@ -10,6 +10,8 @@ import { getFavorites } from "@/lib/store/modules/listing";
 import { safeUser } from "@/types";
 import { FavoriteListing } from "./FavoriteListing";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   currentUser?: safeUser | null;
 };

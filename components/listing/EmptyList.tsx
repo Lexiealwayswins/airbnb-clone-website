@@ -6,6 +6,7 @@ import { Button } from "../Button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+export const dynamic = "force-dynamic";
 
 type Props = {
   title?: string;

@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import { EmptyList } from "@/components/listing/EmptyList";
 import { safeUser } from "@/types";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   searchParams: IListingsParams;
   currentUser?: safeUser | null;
