@@ -1,7 +1,7 @@
+export const dynamic = "force-dynamic";
 import { ClientOnly } from "@/components/ClientOnly";
 import { ListingPage } from "@/components/listing/ListingPage";
 import { IListingsParams } from "@/lib/store/modules/listing";
-import { div } from "framer-motion/client";
 import { AppProvider } from "./AppProvider";
 import getCurrentUser from "./actions/getCurrentUser";
 

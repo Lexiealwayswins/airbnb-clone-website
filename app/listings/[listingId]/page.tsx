@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import { AppProvider } from "@/app/AppProvider";
 import { ClientOnly } from "@/components/ClientOnly";
