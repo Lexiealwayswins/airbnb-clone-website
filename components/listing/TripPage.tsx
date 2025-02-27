@@ -9,8 +9,6 @@ import { useEffect, useState } from "react";
 import { getProperties } from "@/lib/store/modules/listing";
 import { safeUser } from "@/types";
 
-export const dynamic = "force-dynamic";
-
 type Props = {
   currentUser?: safeUser | null;
 };

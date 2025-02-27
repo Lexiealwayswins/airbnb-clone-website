@@ -10,8 +10,6 @@ import { getProperties } from "@/lib/store/modules/listing";
 import { PropertyListing } from "@/components/listing/PropertyListing";
 import { safeUser } from "@/types";
 
-export const dynamic = "force-dynamic";
-
 type Props = {
   currentUser?: safeUser | null;
 };
