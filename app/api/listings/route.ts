@@ -5,6 +5,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET (req: NextRequest) {
   try {
+    console.log("Starting /api/listings");
+    console.log("DATABASE_URL:", process.env.DATABASE_URL);
+    console.time("Prisma connect");
+    await prisma.$connect();
+    console.timeEnd("Prisma connect");
+
     const { searchParams } = new URL(req.url);
 
     const userId = searchParams.get('userId');
@@ -75,6 +81,7 @@ export async function GET (req: NextRequest) {
       }
     });
     console.timeEnd("Fetching listings");
+    console.log("Listings fetched:", listing.length);
 
     const safeListings = listing.map((list: Listing) => ({
       ...list,
@@ -91,7 +98,8 @@ export async function GET (req: NextRequest) {
     // }); 
 
   } catch (err: any) {
-    return NextResponse.json(err);
+    console.error("Error in /api/listings:", err);
+    return NextResponse.json({ error: "Failed to fetch listings" }, { status: 500 });
     // console.error(err);
     // return new Response(JSON.stringify({ err: 'Internal Server Error'}),{
     //   status: 500,
@@ -99,7 +107,9 @@ export async function GET (req: NextRequest) {
     //     'Content-Type': 'application/json',
     //   },
     // });
-  } 
+  } finally {
+    await prisma.$disconnect();
+  }
 };
 
 export async function POST (req: NextRequest) {
