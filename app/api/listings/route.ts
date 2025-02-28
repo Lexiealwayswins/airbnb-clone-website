@@ -71,7 +71,7 @@ export async function GET (req: NextRequest) {
 
     console.time("Fetching listings");
     const listing = await prisma.listing.findMany({
-      take: 4,  // 限制返回数量
+      // take: 4,  // 限制返回数量
       where: query,
       orderBy: {
         createdAt: "desc",
