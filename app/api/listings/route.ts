@@ -7,9 +7,6 @@ export async function GET (req: NextRequest) {
   try {
     console.log("Starting /api/listings");
     console.log("DATABASE_URL:", process.env.DATABASE_URL);
-    console.time("Prisma connect");
-    await prisma.$connect();
-    console.timeEnd("Prisma connect");
 
     const { searchParams } = new URL(req.url);
 
