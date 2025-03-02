@@ -1,6 +1,3 @@
 {
-  "regions": ["sfo1"],
-  "env": {
-    "NEXTAUTH_SECRET": "@nextauth_secret"
-  }
+  "regions": ["sfo1"]
 }
