@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true, // 构建时忽略 ESLint 错误
   },
+  env: {
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+  },
 };
 
 export default nextConfig;
