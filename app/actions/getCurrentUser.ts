@@ -2,8 +2,15 @@ import prisma from "@/lib/prismadb";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
 
+// export async function getSession() {
+//   return await getServerSession(authOptions);
+// }
+
 export async function getSession() {
-  return await getServerSession(authOptions);
+  return await getServerSession({
+    ...authOptions,
+    secret: process.env.NEXTAUTH_SECRET, // 手动传递
+  });
 }
 
 export default async function getCurrentUser() {

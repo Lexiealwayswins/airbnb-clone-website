@@ -1,6 +1,0 @@
-[build]
-  command = "npm run build"  # 构建命令，根据你的 package.json 调整
-  publish = ".next"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
