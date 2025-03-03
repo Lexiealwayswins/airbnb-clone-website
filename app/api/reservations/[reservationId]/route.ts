@@ -1,6 +1,6 @@
+export const dynamic = 'force-dynamic';
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/lib/prismadb";
-import { IDelReservationsParams } from "@/lib/store/modules/reservation";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE (req: NextRequest, context: any) {

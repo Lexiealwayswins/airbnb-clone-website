@@ -1,8 +1,7 @@
+export const dynamic = 'force-dynamic';
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prismadb";
-import { IParams } from "@/lib/store/modules/listing";
-
 
 export async function GET(req: Request, context: any) {
   const { listingId } = context.params as { listingId: string };

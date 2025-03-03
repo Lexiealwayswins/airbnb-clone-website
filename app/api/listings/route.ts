@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/lib/prismadb";
 import { Listing } from "@prisma/client";

@@ -5,7 +5,12 @@ import { ClientOnly } from "@/components/ClientOnly";
 import { ListingDetail } from "@/components/listing/ListingDetail";
 
 export default async function ListingDetailPage ({ params }: any ) {
-  const currentUser = await getCurrentUser();
+  let currentUser = null;
+  try {
+    currentUser = await getCurrentUser();
+  } catch (error) {
+    console.error("Failed to fetch current user:", error);
+  }
   const { listingId } = params;
   return (
     <ClientOnly>

@@ -8,7 +8,12 @@ import { TripPage } from "@/components/listing/TripPage";
 type Props = {};
 
 export default async function TripsPage ({}: Props) {
-  const currentUser = await getCurrentUser();
+  let currentUser = null;
+  try {
+    currentUser = await getCurrentUser();
+  } catch (error) {
+    console.error("Failed to fetch current user:", error);
+  }
   return (
     <ClientOnly>
       <AppProvider>

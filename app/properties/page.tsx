@@ -7,7 +7,12 @@ import { AppProvider } from "../AppProvider";
 type Props = {};
 
 export default async function PropertiesPage ({}: Props) {
-  const currentUser = await getCurrentUser();
+  let currentUser = null;
+  try {
+    currentUser = await getCurrentUser();
+  } catch (error) {
+    console.error("Failed to fetch current user:", error);
+  }
   return (
     <ClientOnly>
       <AppProvider>
