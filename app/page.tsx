@@ -10,8 +10,13 @@ type Props = {
 }
 
 export default async function Home({ searchParams }: any ) {
-  const currentUser = await getCurrentUser();
-  const parsedSearchParams = searchParams && await searchParams;
+  let currentUser = null;
+  try {
+    currentUser = await getCurrentUser();
+  } catch (error) {
+    console.error("Failed to fetch current user:", error);
+  }
+  const parsedSearchParams = searchParams || {};
   return (
     <ClientOnly>
       <AppProvider>
