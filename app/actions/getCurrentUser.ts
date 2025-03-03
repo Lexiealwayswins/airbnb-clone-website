@@ -2,15 +2,8 @@ import prisma from "@/lib/prismadb";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
 
-// export async function getSession() {
-//   return await getServerSession(authOptions);
-// }
-
 export async function getSession() {
-  return await getServerSession({
-    ...authOptions,
-    secret: process.env.NEXTAUTH_SECRET, // 手动传递
-  });
+  return await getServerSession(authOptions);
 }
 
 export default async function getCurrentUser() {
@@ -43,5 +36,6 @@ export default async function getCurrentUser() {
       "🚀 ~ file: getCurrentUser.ts:13 ~ getCurrentUser ~ error:",
       error
     );
+    throw new Error('Failed to fetch current user');
   }
 }
