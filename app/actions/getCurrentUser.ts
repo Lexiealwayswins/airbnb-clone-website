@@ -36,6 +36,6 @@ export default async function getCurrentUser() {
       "🚀 ~ file: getCurrentUser.ts:13 ~ getCurrentUser ~ error:",
       error
     );
-    throw new Error('Failed to fetch current user');
+    return null;
   }
 }
