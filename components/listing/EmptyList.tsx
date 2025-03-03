@@ -5,6 +5,7 @@ import { Heading } from "../Heading";
 import { Button } from "../Button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import useFilter from "@/hook/useFilter";
 
 type Props = {
   title?: string;
@@ -18,6 +19,7 @@ export const EmptyList = ({
   showReset,
 }: Props) => {
   const router = useRouter(); 
+  const filter = useFilter();
   const [hasMounted, setHasMounted] = useState(false);
   
   useEffect(() => {
@@ -26,6 +28,11 @@ export const EmptyList = ({
 
   if (!hasMounted) {
     return null; // 确保只在客户端渲染时渲染
+  }
+
+  const handleClick = () => {
+    router.push('/');
+    filter.onClose();
   }
 
   return (
@@ -41,7 +48,7 @@ export const EmptyList = ({
           <Button 
             outline
             label="Remove all filters"
-            onClick={() => router.push('/')}
+            onClick={handleClick}
           />
         )}
       </div>

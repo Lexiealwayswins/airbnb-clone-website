@@ -1,23 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { Filter } from "./Filter";
+import { useSearchParams } from "next/navigation";
+import useFilter from "@/hook/useFilter";
 
 type Props = {}
 export const Search = ({}: Props) => {
-
-  const [showFilter, setShowFilter] = useState(false);
-  const handleClick = () => {
-    setShowFilter(true);
-  };
+  const filter = useFilter();
 
   return (
     <div>
-      <div className={showFilter ? 'hidden' : 'block'}>
+      { filter.isOpen ? (
+        <Filter />
+      ) : (
         <div 
-          className="border-[1px] w-full md:w-auto rounded-full py-2 shadow-sm hover:shadow-md transition cursor-pointer"
-          onClick={handleClick}
+        className="border-[1px] w-full md:w-auto rounded-full py-2 shadow-sm hover:shadow-md transition cursor-pointer"
+        onClick={filter.onOpen}
         >
           <div className="flex flex-row items-center justify-between text-center">
             <div className="px-6 font-semibold text-sm hover:text-lg">Anywhere</div>
@@ -32,10 +32,7 @@ export const Search = ({}: Props) => {
             </div>
           </div>
         </div>
-      </div>
-      <div className={showFilter ? 'block' : 'hidden'}>
-        <Filter />
-      </div>
+      )}
     </div>
 
   );

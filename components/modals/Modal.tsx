@@ -30,7 +30,6 @@ export const Modal = ({
 }: Props) => {
   const [showModal, setShowModal] = useState<boolean>(isOpen);
 
-  // 监听 isOpen 变化，控制 showModal
   useEffect(() => {
     if (isOpen) {
       setShowModal(true);
