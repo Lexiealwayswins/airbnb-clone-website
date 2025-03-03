@@ -16,7 +16,7 @@ export default async function Home({ searchParams }: any ) {
   } catch (error) {
     console.error("Failed to fetch current user:", error);
   }
-  const parsedSearchParams = searchParams || {};
+  const parsedSearchParams = await searchParams || {};
   return (
     <ClientOnly>
       <AppProvider>

@@ -21,13 +21,6 @@ const font = Nunito({
   subsets: ["latin"],
 });
 
-// import dynamic from 'next/dynamic';
-
-// // 使用 dynamic 导入 ClientOnly 组件，禁用 SSR
-// const ClientOnly = dynamic(() => import('@/components/ClientOnly').then(mod => mod.ClientOnly), { 
-//   ssr: false 
-// });
-
 export default async function RootLayout({
   children,
 }: {

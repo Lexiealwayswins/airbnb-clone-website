@@ -6,9 +6,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET (req: NextRequest) {
   try {
-    console.log("Starting /api/listings");
-    console.log("DATABASE_URL:", process.env.DATABASE_URL);
-
     const { searchParams } = new URL(req.url);
 
     const userId = searchParams.get('userId');
@@ -70,7 +67,6 @@ export async function GET (req: NextRequest) {
       };
     };
 
-    console.time("Fetching listings");
     const listing = await prisma.listing.findMany({
       // take: 4,  // 限制返回数量
       where: query,
@@ -78,8 +74,6 @@ export async function GET (req: NextRequest) {
         createdAt: "desc",
       }
     });
-    console.timeEnd("Fetching listings");
-    console.log("Listings fetched:", listing.length);
 
     const safeListings = listing.map((list: Listing) => ({
       ...list,
@@ -105,9 +99,7 @@ export async function GET (req: NextRequest) {
     //     'Content-Type': 'application/json',
     //   },
     // });
-  } finally {
-    await prisma.$disconnect();
-  }
+  } 
 };
 
 export async function POST (req: NextRequest) {

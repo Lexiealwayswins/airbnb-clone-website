@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { Button } from "../Button";
 
@@ -29,6 +29,14 @@ export const Modal = ({
   secondaryActionLabel
 }: Props) => {
   const [showModal, setShowModal] = useState<boolean>(isOpen);
+
+  // 监听 isOpen 变化，控制 showModal
+  useEffect(() => {
+    if (isOpen) {
+      setShowModal(true);
+    }
+  }, [isOpen]);
+
   const handleClose = useCallback(() => {
     if (disabled) return;
     setShowModal(false);
@@ -49,6 +57,7 @@ export const Modal = ({
   }, [disabled, secondaryAction]);
 
   if (!isOpen) return;
+
   return (
     <div className="fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70 flex justify-center items-center overflow-x-hidden overflow-y-auto ">
       <div className="w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto">
