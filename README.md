@@ -1,3 +1,24 @@
+  [demo]: https://img.shields.io/badge/🚀%20Live%20Demo-000000?style=for-the-badge&&logoColor=white&color=0a6bdb
+  [demo-link]: https://airbnb-clone-website-beta.vercel.app
+
+
+<div align="center">
+
+  <img src="https://user-images.githubusercontent.com/99184393/185779974-a31a9f47-f8d3-42ea-b7f8-4a2971774615.png" alt="logo" width="250" height="auto" />
+  
+# Airbnb Clone Website!
+  
+  <p>
+Full Stack Airbnb Clone with Next.js 13 Tailwind-css, Prisma, MongoDB, NextAuth, Framer-motionSocial, Login (Google and Facebook), Image upload, Cloudinary CDN, Location selection, Map component, Country autocomplete, Fetching listings with server components.
+  </p>
+
+  [![demo][demo]][demo-link]
+
+  <img
+    src='https://res.cloudinary.com/dyycmwk8h/image/upload/v1741068373/demo_snzg9b.png'
+    alt='Screenshot of the app'
+  />
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
