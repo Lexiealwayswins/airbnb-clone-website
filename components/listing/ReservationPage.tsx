@@ -8,24 +8,24 @@ import { AppDispatch, RootState } from "@/lib/store";
 import { useEffect, useState } from "react";
 import { safeUser } from "@/types";
 import { getReservations } from "@/lib/store/modules/reservation";
-import { TripListing } from "./TripListing";
+import { ReservationListing } from "./ReservationListing";
 
 type Props = {
   currentUser?: safeUser | null;
 };
 
-export const TripPage = ({ currentUser }: Props) => {
+export const ReservationPage = ({ currentUser }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
-  const trips = useSelector((state: RootState) => state.reservation.safeReservations) || [];
+  const reservations = useSelector((state: RootState) => state.reservation.safeReservations) || [];
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTrips = async () => {
       const res = await dispatch(getReservations({
-        userId: currentUser?.id
+        authorId: currentUser?.id
       }));
-      console.log("Fetched Trips:", res);
+      console.log("Fetched Reservations:", res);
       setLoading(false);
     };
     fetchTrips();
@@ -45,18 +45,18 @@ export const TripPage = ({ currentUser }: Props) => {
     return <div>Loading...</div>; // 或者展示一个loading组件
   }
 
-  if (!trips || !Array.isArray(trips) || trips.length === 0) {
+  if (!reservations || !Array.isArray(reservations) || reservations.length === 0) {
     return (
       <ClientOnly>
-        <EmptyList title="No trips found" subtitle="Looks like you have no reserved Trips listings."/>
+        <EmptyList title="No reservations found" subtitle="Looks like your properties have no reservations listings."/>
       </ClientOnly>
     );
   }
 
   return (
     <ClientOnly>
-      <TripListing 
-        trips={trips}
+      <ReservationListing 
+        reservations={reservations}
         currentUser={currentUser}
       />
     </ClientOnly>

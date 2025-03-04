@@ -11,11 +11,11 @@ import { delReservations } from "@/lib/store/modules/reservation";
 import { AppDispatch } from "@/lib/store";
 
 type Props = {
-  trips: safeReservation[];
+  reservations: safeReservation[];
   currentUser?: safeUser | null;
 }
 
-export const TripListing = ({trips, currentUser}: Props) => {
+export const ReservationListing = ({reservations, currentUser}: Props) => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const [deletingId, setDeletingId] = useState("");
@@ -31,18 +31,18 @@ export const TripListing = ({trips, currentUser}: Props) => {
   return (
     <Container>
       <Heading 
-        title="Trips"
-        subtitle="List of your upcoming trips!"
+        title="Reservations"
+        subtitle="Manage your resercations!"
       />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-colds-4 xl:grid-cols-4 2xl:grid-cols-5 gap-8 mt-10">
-        {trips.map((item: any) => (
+        {reservations.map((item: any) => (
           <ListingCard
             reservation={item}
             data={item.listing}
             currentUser={currentUser}
             key={item.id}
             onAction={onDelete}
-            actionLabel="Cancel Reservations"
+            actionLabel="Cancel guest eservations"
             disabled={deletingId === item.id}
             actionId={item.id}
           />
