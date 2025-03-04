@@ -32,7 +32,7 @@ export const Avatar = ({ src, userName }: Props) => {
           height="30"
           width="30"
           alt="noUser"
-          src="/assets/avatar.png"
+          src="/assets/avatar.jpg"
         />
       )}
     </div>

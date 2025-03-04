@@ -1,5 +1,5 @@
 import { safeReservation } from "@/types";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export interface IGetReservationsParams {
@@ -23,14 +23,8 @@ export const getReservations = createAsyncThunk(
   "reservation/getReservations", 
   async(params: IGetReservationsParams, { rejectWithValue}) => {
     try {
-      const queryParams = new URLSearchParams();
-      if (params.listingId) queryParams.append('listingId', params.listingId);
-      if (params.userId) queryParams.append('userId', params.userId);
-      if (params.authorId) queryParams.append('authorId', params.authorId);
-      
-      const url = `/api/reservations${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
-      const response = await axios.get(url);
-      return response.data;
+      const res = await axios.get('/api/reservations', {params})
+      return res.data;
     } catch (err: any) {
       return rejectWithValue(err.message); // Redux will dispatch rejected automatically
     } 
@@ -107,7 +101,6 @@ const reservationStore = createSlice({
         state.error = null;
       })
       .addCase(getReservations.fulfilled, (state, action) => {
-        console.log("getReservations payload:", action.payload);
         state.safeReservations = action.payload;
         state.loading = false;
       })

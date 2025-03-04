@@ -40,8 +40,8 @@ export const ListingReservation = ({
         months={months}
       />
       <hr />
-      <div className="">
-        <Button disabled={disabled} label="Reserve" onClick={() => onSubmit} />
+      <div className="p-4">
+        <Button disabled={disabled} label="Reserve" onClick={onSubmit} />
       </div>
       <hr />
       <div className="p-4 flex flex-row items-center justify-between font-semibold text-lg">

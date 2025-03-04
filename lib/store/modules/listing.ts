@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { safeListing, safeUser } from '@/types';
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export interface IListingsParams {
   userId?: string;
@@ -10,6 +12,18 @@ export interface IListingsParams {
   endDate?: string;
   locationValue?: string;
   category?: string;
+}
+
+export interface IPostListingsParams {
+  title: string,
+  description: string,
+  imageSrc: string,
+  category: string,
+  roomCount: number,
+  bathroomCount: number,
+  guestCount: number,
+  location?: string,
+  price: number,
 }
 
 export interface IParams {
@@ -59,6 +73,33 @@ export const getProperties = createAsyncThunk(
       return data;
     } catch (err: any) {
       return rejectWithValue(err.message); 
+    } 
+  }
+);
+
+export const delProperties = createAsyncThunk(
+  "listing/delProperties", 
+  async(params: IParams, { rejectWithValue}) => {
+    try {
+      const { listingId } = params;
+      await axios.delete(`/api/listings/${listingId}`);
+      return listingId;
+    } catch (err: any) {
+      return rejectWithValue(err.message); // Redux will dispatch rejected automatically
+    } 
+  }
+);
+
+export const postProperties = createAsyncThunk(
+  "listing/postProperties", 
+  async(params: IPostListingsParams, { rejectWithValue}) => {
+    try {
+      const response = await axios.post('/api/listings', params);
+      toast.success("Listing Published!");
+      return response.data;
+    } catch (err: any) {
+      toast.error("Something Went Wrong");
+      return rejectWithValue(err.message); // Redux will dispatch rejected automatically
     } 
   }
 );

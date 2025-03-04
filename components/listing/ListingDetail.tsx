@@ -28,7 +28,6 @@ export const ListingDetail = ({currentUser, params}: Props) => {
   const listing = useSelector((state:RootState) => state.listing.listing);
   const reservations = useSelector((state:RootState) => state.reservation.safeReservations);
   const [loading, setLoading] = useState(true);
-  console.log(params.listingId);
 
   useEffect(() => {
     const fetchListingDetail = async () => {
@@ -43,17 +42,15 @@ export const ListingDetail = ({currentUser, params}: Props) => {
 
   useEffect(() => {
     const fetchReservation = async () => {
-      if (!listing || !params.listingId || !listing.userId || !listing.user?.id) return;
+      if (!params.listingId) return;
       const res = await dispatch(getReservations({
         listingId: params.listingId, 
-        userId: listing.userId, 
-        authorId: listing.user.id 
-      })).unwrap();
+      }));
       console.log("Fetched reservations:", res);
       setLoading(false);
     };
     fetchReservation();
-  }, [dispatch, params.listingId, listing?.userId, listing?.user?.id]);
+  }, [dispatch, params.listingId]);
 
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
@@ -78,7 +75,11 @@ export const ListingDetail = ({currentUser, params}: Props) => {
 
   const onChangeDate = (ranges: RangeKeyDict) => {
     const selection = ranges.selection;
-    setDateRange(selection);
+    setDateRange({
+      startDate: selection.startDate ?? new Date(),
+      endDate: selection.endDate ?? new Date(),
+      key: selection.key
+    });
   };
 
   const [totalPrice, setTotalPrice] = useState(listing.price);
@@ -103,6 +104,7 @@ export const ListingDetail = ({currentUser, params}: Props) => {
     }
     setLoading(true);
     dispatch(postReservations(data));
+    router.push('/trips');
   }, [dispatch, totalPrice, dateRange, params.listingId, router, currentUser, loginModal]);
 
   const category = useMemo(() => {
@@ -144,8 +146,8 @@ export const ListingDetail = ({currentUser, params}: Props) => {
                 disabled={loading}
                 onSubmit={() => onCreateReservation({
                   listingId: listing.id,
-                  startDate: new Date(),
-                  endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                  startDate: dateRange.startDate ?? new Date(),
+                  endDate: dateRange.endDate ?? new Date(),
                   totalPrice
                 })}
                 totalPrice={totalPrice}

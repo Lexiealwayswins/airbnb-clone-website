@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prismadb";
 
 export async function GET(req: Request, context: any) {
-  const { listingId } = context.params as { listingId: string };
+  const { listingId } = await context.params as { listingId: string };
   // console.log("API listingId:", listingId);
 
   if (!listingId) {

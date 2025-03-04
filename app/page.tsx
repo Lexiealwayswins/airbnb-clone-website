@@ -2,7 +2,6 @@ export const dynamic = "force-dynamic";
 import { ClientOnly } from "@/components/ClientOnly";
 import { ListingPage } from "@/components/listing/ListingPage";
 import { IListingsParams } from "@/lib/store/modules/listing";
-import { AppProvider } from "./AppProvider";
 import getCurrentUser from "./actions/getCurrentUser";
 
 type Props = {
@@ -19,12 +18,10 @@ export default async function Home({ searchParams }: any ) {
   const parsedSearchParams = await searchParams || {};
   return (
     <ClientOnly>
-      <AppProvider>
-        <ListingPage 
-          searchParams={parsedSearchParams}
-          currentUser={currentUser}
-        />
-      </AppProvider>
+      <ListingPage 
+        searchParams={parsedSearchParams}
+        currentUser={currentUser}
+      />
     </ClientOnly>
   );
 }

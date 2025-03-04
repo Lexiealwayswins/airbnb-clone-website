@@ -3,13 +3,13 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/lib/prismadb";
 import { NextResponse } from "next/server";
 
-export const GET = async (req: Request, context: any) => {
+export async function GET (req: Request, params: any) {
   try {
-    const { listingId, userId, authorId } = context.params as {
-      authorId?: string,  
-      userId?: string  
-      listingId?: string
-    };
+    const { searchParams } = new URL(req.url);
+    const listingId = searchParams.get("listingId");
+    const userId = searchParams.get("userId");
+    const authorId = searchParams.get("authorId");
+
     const query: any = {};
 
     if (listingId) {
@@ -43,22 +43,22 @@ export const GET = async (req: Request, context: any) => {
     }));
     return NextResponse.json(safeReservations);
   } catch (error) {
-    return NextResponse.json(error);
+    return NextResponse.json({ error: "Failed to get reservations" }, { status: 500 });
   }
 };
 
-export const POST = async (req: Request) => {
+export async function POST (req: Request) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    return NextResponse.error();
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const body = await req.json();
 
   const { listingId, startDate, endDate, totalPrice } = body;
   if (!listingId || !startDate || !endDate || !totalPrice) {
-    return NextResponse.error();
+    return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
   }
 
   const postReservation = await prisma.listing.update({

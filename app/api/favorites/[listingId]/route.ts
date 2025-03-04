@@ -7,13 +7,13 @@ export async function POST(req: NextRequest, context: any) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    return NextResponse.error();
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const { listingId } = context.params as { listingId: string };
 
   if (!listingId || typeof listingId !== "string") {
-    throw new Error("Invalid Id");
+    return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
   }
 
   const favoriteIds = [...(currentUser.favoriteIds || [])];
@@ -42,7 +42,7 @@ export async function DELETE (req: NextRequest, context: any) {
   const { listingId } = context.params as { listingId: string };
 
   if (!listingId || typeof listingId !== "string") {
-    throw new Error("Invalid Id");
+    return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
   }
 
   let favoriteIds = [...(currentUser.favoriteIds || [])];

@@ -8,7 +8,7 @@ export async function GET (req: NextRequest) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    return NextResponse.error();
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const properties = await prisma.listing.findMany({

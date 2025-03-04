@@ -12,9 +12,10 @@ import { Map } from "../Map";
 import { GuestRoomSelect } from "../inputs/GuestRoomSelect";
 import { ImageUpload } from "../inputs/ImageUpload";
 import { Input } from "../inputs/Input";
-import axios from "axios";
-import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/lib/store";
+import { IPostListingsParams, postProperties } from "@/lib/store/modules/listing";
 
 
 enum STEPS {
@@ -29,6 +30,7 @@ type Props = {}
 
 export const RentModal = ({}: Props) => {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
   const rentalModal = useRentModal();
   const [isLoading, setIsLoading] = useState(rentalModal.isOpen);
   const [step, setStep] = useState(STEPS.CATEGORY);
@@ -93,25 +95,14 @@ export const RentModal = ({}: Props) => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (step !== STEPS.PRICE) return onNext();
-    console.log("提交的数据:", data); 
     setIsLoading(true);
 
-    axios
-      .post("/api/listings", data)
-      .then(() => {
-        toast.success("Listing Published!");
-        router.refresh();
-        reset();
-        setStep(STEPS.CATEGORY);
-        rentalModal.onClose();
-      })
-      .catch((error) => {
-        console.error("提交失败:", error.response?.data || error.message);
-        toast.error("Something Went Wrong");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    dispatch(postProperties(data as IPostListingsParams))
+    router.refresh();
+    reset();
+    setStep(STEPS.CATEGORY);
+    rentalModal.onClose();
+    setIsLoading(false);
   };
 
   let body = (

@@ -1,7 +1,6 @@
 export const dynamic = "force-dynamic";
 import { ClientOnly } from "@/components/ClientOnly";
 import getCurrentUser from "@/app/actions/getCurrentUser";
-import { AppProvider } from "../AppProvider";
 import { FavoritePage } from "@/components/listing/FavoritePage";
 
 type Props = {};
@@ -15,11 +14,9 @@ export default async function FavoritiesPage ({}: Props) {
   }
   return (
     <ClientOnly>
-      <AppProvider>
-        <FavoritePage 
-          currentUser={currentUser}
-        />
-      </AppProvider>
+      <FavoritePage 
+        currentUser={currentUser}
+      />
     </ClientOnly>
   );
 }

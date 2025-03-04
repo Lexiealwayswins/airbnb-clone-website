@@ -24,7 +24,6 @@ export const ListingHead = ({
 }: Props) => {
   const { getByValue } = useCountries();
   const location = getByValue(locationValue);
-  console.log("看看image",imageSrc);
   return (
     <div className="flex flex-col gap-5">
       <Heading
@@ -41,12 +40,14 @@ export const ListingHead = ({
         }}
         className="relative w-full h-[60vh] overflow-hidden rounded-xl "
       >
-        <Image 
-          src={imageSrc}
-          alt="image"
-          fill
-          className="w-full object-cover"
-        />
+        { imageSrc && 
+          <Image 
+            src={imageSrc}
+            alt="image"
+            fill
+            className="w-full object-cover"
+          />
+        }
         <div className="absolute top-5 right-5">
           <HeartButton listingId={id} currentUser={currentUser} />
         </div>

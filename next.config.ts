@@ -9,7 +9,12 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname:'res.cloudinary.com',
         pathname: '/**',
-      } // Allow Cloudinary image src
+      }, // Allow Cloudinary image src
+      // {
+      //   protocol: 'https',
+      //   hostname:'ui-avatars.com',
+      //   pathname: '/**',
+      // }
     ],
   },
   eslint: {
