@@ -15,6 +15,7 @@ import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
 import useLoginModal from "@/hook/useLoginModal";
 import { getReservations, IPostReservationsParams, postReservations } from "@/lib/store/modules/reservation";
+import Loader from "../Loader";
 
 type Props = {
   currentUser?: safeUser | null;
@@ -32,9 +33,8 @@ export const ListingDetail = ({currentUser, params}: Props) => {
   useEffect(() => {
     const fetchListingDetail = async () => {
       if (params.listingId) {
-        const res = await dispatch(getListingsById({ listingId: params.listingId })).unwrap();
+        await dispatch(getListingsById({ listingId: params.listingId })).unwrap();
         setLoading(false);
-        console.log("Fetched listings:",res);
       }
     };
     fetchListingDetail();
@@ -43,10 +43,9 @@ export const ListingDetail = ({currentUser, params}: Props) => {
   useEffect(() => {
     const fetchReservation = async () => {
       if (!params.listingId) return;
-      const res = await dispatch(getReservations({
+      await dispatch(getReservations({
         listingId: params.listingId, 
       }));
-      console.log("Fetched reservations:", res);
       setLoading(false);
     };
     fetchReservation();
@@ -112,7 +111,9 @@ export const ListingDetail = ({currentUser, params}: Props) => {
   }, [listing?.category]);
 
   if (loading || !listing) {
-    return <div>Loading...</div>;
+    return (
+      <Loader />
+    ); 
   }
 
   return (
