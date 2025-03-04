@@ -9,7 +9,7 @@
 # Airbnb Clone Website!
   
   <p>
-Full Stack Airbnb Clone with Next.js 13 Tailwind-css, Prisma, MongoDB, NextAuth, Framer-motionSocial, Login (Google and Facebook), Image upload, Cloudinary CDN, Location selection, Map component, Country autocomplete, Fetching listings with server components.
+Full Stack Airbnb Clone with Next.js 13 Redux, Tailwind-css, Prisma, MongoDB, NextAuth, Framer-motionSocial, Login (Google and Facebook), Image upload, Cloudinary CDN, Location selection, Map component, Country autocomplete, Fetching listings with server components.
   </p>
 
   [![demo][demo]][demo-link]
