@@ -9,6 +9,7 @@ import { RegisterModal } from "@/components/modals/RegisterModal";
 import { RentModal } from "@/components/modals/RentModal";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import { AppProvider } from "./AppProvider";
+import ToastContainerBar from "@/components/ToastContainerBar";
 // import { Provider } from "react-redux";
 // import store from "@/lib/store";
 
@@ -33,6 +34,7 @@ export default async function RootLayout({
       <body suppressHydrationWarning className={font.className}>
         <ClientOnly>
           <AppProvider>
+            <ToastContainerBar />
             <LoginModal />
             <RegisterModal />
             <RentModal />

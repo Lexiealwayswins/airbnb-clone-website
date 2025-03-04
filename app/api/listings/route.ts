@@ -146,7 +146,6 @@ export async function POST (req: NextRequest) {
 
     return NextResponse.json({ success: true, listing }, { status: 201 });
   } catch (error) {
-    console.error("Error creating listing:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 };

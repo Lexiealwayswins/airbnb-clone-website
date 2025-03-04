@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { getProperties } from "@/lib/store/modules/listing";
 import { PropertyListing } from "@/components/listing/PropertyListing";
 import { safeUser } from "@/types";
+import Loader from "../Loader";
 
 type Props = {
   currentUser?: safeUser | null;
@@ -24,7 +25,6 @@ export const PropertyPage = ({ currentUser }: Props) => {
   useEffect(() => {
     const fetchProperties = async () => {
       const res = await dispatch(getProperties());
-      console.log("Fetched Properties:", res);
       setLoading(false);
     };
     fetchProperties();
@@ -40,8 +40,9 @@ export const PropertyPage = ({ currentUser }: Props) => {
   }
 
   if (loading) {
-    console.log("loading");
-    return <div>Loading...</div>; // 或者展示一个loading组件
+    return (
+      <Loader />
+    );
   }
 
   if (!properties || !Array.isArray(properties) ||properties.length === 0) {

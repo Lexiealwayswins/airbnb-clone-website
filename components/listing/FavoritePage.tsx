@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { getFavorites } from "@/lib/store/modules/listing";
 import { safeUser } from "@/types";
 import { FavoriteListing } from "./FavoriteListing";
+import Loader from "../Loader";
 
 type Props = {
   currentUser?: safeUser | null;
@@ -24,7 +25,6 @@ export const FavoritePage = ({ currentUser }: Props) => {
   useEffect(() => {
     const fetchFavorites = async () => {
       const res = await dispatch(getFavorites());
-      console.log("Fetched Favorites:", res);
       setLoading(false);
     };
     fetchFavorites();
@@ -40,8 +40,9 @@ export const FavoritePage = ({ currentUser }: Props) => {
   }
 
   if (loading) {
-    // console.log("loading");
-    return <div>Loading...</div>; // 或者展示一个loading组件
+    return (
+      <Loader />
+    ); 
   }
 
   if (!favorites || !Array.isArray(favorites) ||favorites.length === 0) {

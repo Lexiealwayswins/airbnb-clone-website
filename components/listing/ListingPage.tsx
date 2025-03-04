@@ -9,6 +9,7 @@ import { AppDispatch, RootState } from "@/lib/store";
 import { useEffect, useState } from "react";
 import { EmptyList } from "@/components/listing/EmptyList";
 import { safeUser } from "@/types";
+import Loader from "../Loader";
 
 type Props = {
   searchParams: IListingsParams;
@@ -23,8 +24,7 @@ export const ListingPage = ({searchParams, currentUser }: Props) => {
 
   useEffect(() => {
     const fetchListings = async () => {
-      const res = await dispatch(getListings(searchParams));
-      console.log("Fetched listings:", res);
+      await dispatch(getListings(searchParams));
       setLoading(false);
     };
     fetchListings();
@@ -32,10 +32,10 @@ export const ListingPage = ({searchParams, currentUser }: Props) => {
   }, [dispatch, searchParams]);
 
   if (loading) {
-    // console.log("loading");
-    return <div>Loading...</div>; // 或者展示一个loading组件
+    return (
+      <Loader />
+    ); 
   }
-  // console.log("Listing page, current listing length:", listing.length);
 
   if (!listing || !Array.isArray(listing) ||listing.length === 0) {
     // console.log("No listings, showing EmptyList");

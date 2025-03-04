@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { safeUser } from "@/types";
 import { getReservations } from "@/lib/store/modules/reservation";
 import { TripListing } from "./TripListing";
+import Loader from "../Loader";
 
 type Props = {
   currentUser?: safeUser | null;
@@ -25,7 +26,6 @@ export const TripPage = ({ currentUser }: Props) => {
       const res = await dispatch(getReservations({
         userId: currentUser?.id
       }));
-      console.log("Fetched Trips:", res);
       setLoading(false);
     };
     fetchTrips();
@@ -41,8 +41,9 @@ export const TripPage = ({ currentUser }: Props) => {
   }
 
   if (loading) {
-    console.log("loading");
-    return <div>Loading...</div>; // 或者展示一个loading组件
+    return (
+      <Loader/>
+    );
   }
 
   if (!trips || !Array.isArray(trips) || trips.length === 0) {

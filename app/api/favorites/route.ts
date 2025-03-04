@@ -10,8 +10,6 @@ export const GET = async () => {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  console.log("currentUser: ", currentUser);
-
   const favorites = await prisma.listing.findMany({
     where: {
       id: {
@@ -19,8 +17,6 @@ export const GET = async () => {
       },
     },
   });
-
-  console.log("favorites: ", favorites);
 
   const safeFavorite = (favorites).map((favorite) => ({
     ...favorite,
