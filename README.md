@@ -6,10 +6,10 @@
 
   <img src="https://user-images.githubusercontent.com/99184393/185779974-a31a9f47-f8d3-42ea-b7f8-4a2971774615.png" alt="logo" width="250" height="auto" />
   
-# Airbnb Clone Website!
+# Airbnb Clone Website with Next 15!
   
   <p>
-Full Stack Airbnb Clone with Next.js 13 Redux, Tailwind-css, Prisma, MongoDB, NextAuth, Framer-motionSocial, Login (Google and Facebook), Image upload, Cloudinary CDN, Location selection, Map component, Country autocomplete, Fetching listings with server components.
+Full Stack Airbnb Clone with Next.js 15,  Redux, Tailwind-css, Prisma, MongoDB, NextAuth, Framer-motionSocial, Login (Google and Facebook), Image upload, Cloudinary CDN, Location selection, Map component, Country autocomplete, Fetching listings with server components.
   </p>
 
   [![demo][demo]][demo-link]
